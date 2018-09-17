@@ -1,0 +1,17 @@
+# General stuff
+*~
+
+# LaTeX stuff
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.nav
+*.out
+*.snm
+*.toc
+
+# Python stuff
+__pycache__
+.ipynb_checkpoints
+model.pth

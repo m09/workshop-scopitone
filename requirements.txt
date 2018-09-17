@@ -1,0 +1,7 @@
+torchvision
+jupyter
+tqdm
+flask
+flask-cors
+requests
+

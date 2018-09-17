@@ -1,0 +1,213 @@
+\documentclass{beamer}
+
+\usepackage[utf8x]{inputenc}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage[francais]{babel}
+
+\graphicspath{{./images/}}
+
+\usetheme{metropolis}
+\title{Machine learning \& expérimentations créatives}
+\date{17 septembre 2018}
+\author{Martial Geoffre-Rouland \and Hugo Mougard}
+\institute{Journée thématique IA de la Nantes Digital Week}
+
+% Let me use colours by name.
+\newcommand\blue[1]{\textcolor{blue}{#1}}
+\newcommand\red[1]{\textcolor{red}{#1}}
+\newcommand\green[1]{\textcolor{green}{#1}}
+\newcommand\gray[1]{\textcolor{gray}{#1}}
+\newcommand\purple[1]{\textcolor{purple}{#1}}
+\newcommand\smallgray[1]{\textcolor{gray}{\footnotesize\it #1}}
+\newcommand\prevwork[1]{\smallgray{#1}}
+
+% Some ways to include images.
+% o=only, f=full, h=fit height.
+% more g's or h's means smaller still.
+\newcommand\cimgo[1]{\vfill\centerline{\includegraphics{#1}}\vfill}
+\newcommand\cimgff[1]{\vfill\centerline{\includegraphics[width=1.2\textwidth]{#1}}\vfill}
+\newcommand\cimgf[1]{\vfill\centerline{\includegraphics[width=\textwidth]{#1}}\vfill}
+\newcommand\cimg[1]{\vfill\centerline{\includegraphics[width=.9\textwidth]{#1}}\vfill}
+\newcommand\cimgg[1]{\vfill\centerline{\includegraphics[width=.8\textwidth]{#1}}\vfill}
+\newcommand\cimggg[1]{\vfill\centerline{\includegraphics[width=.7\textwidth]{#1}}\vfill}
+\newcommand\cimgsm[1]{\vfill\centerline{\includegraphics[width=.4\textwidth]{#1}}\vfill}
+\newcommand\cimgt[1]{\centerline{\includegraphics[width=.2\textwidth]{#1}}\vfill}
+\newcommand\cimgh[1]{\vfill\centerline{\includegraphics[height=.9\textheight]{#1}}\vfill}
+\newcommand\cimghh[1]{\vfill\centerline{\includegraphics[height=.8\textheight]{#1}}\vfill}
+\newcommand\cimghhh[1]{\vfill\centerline{\includegraphics[height=.7\textheight]{#1}}\vfill}
+\newcommand\cimghhhh[1]{\vfill\centerline{\includegraphics[height=.6\textheight]{#1}}\vfill}
+
+% Just one phrase centered horizontally and vertically.
+\newcommand\vphrase[1]{\vfill\centerline{\large\bf\blue{#1}}\vfill}
+% Just one phrase, I'll position it.
+\newcommand\phrase[1]{\centerline{\huge\bf\blue{#1}}}
+
+\begin{document}
+\maketitle
+
+\section{Intro aux réseaux de neurones artificiels}
+\label{sec:nn}
+
+\begin{frame}{Réseaux de neurones}
+  \textbf{Inspirés} du cerveau :
+  \begin{itemize}
+  \item 1 neurone = 1 calcul simple
+  \item 10M de neurones = 10M de calculs simples
+  \item 10M de neurones combinés = 10M de calculs simples combinés = 1
+    calcul intéressant
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Réseaux de neurones --- Exemple}
+  \cimgg{neural-network.png}
+\end{frame}
+
+\begin{frame}{Réseaux de neurones --- Neurone biologique}
+  \cimgg{neuron.png}
+\end{frame}
+
+\begin{frame}{Réseaux de neurones --- Neurone artificiel}
+  \cimgg{neuron-model.png}
+\end{frame}
+
+\begin{frame}{Réseaux de neurones --- Pourquoi a-t-on besoin
+    d'activations ?}
+  \cimgg{xor.png}
+\end{frame}
+
+\begin{frame}{Réseaux de neurones --- Fonction d'activation: exemple}
+  \cimgg{activation.jpeg}
+\end{frame}
+
+\begin{frame}{Réseaux de neurones --- C'est quoi déjà un neurone ?}
+  \begin{itemize}
+  \item   Neuron = Weighted averaged of its input + activation function
+  \item   Goal of learning = learn good weights.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Réseaux de neurones --- Exemple (le retour)}
+  \cimgg{neural-network.png}
+\end{frame}
+
+\begin{frame}{Réseaux de neurones --- Comment savoir si le réseau est
+    bon ?}
+  \begin{itemize}
+  \item Calculer nous-même ce qu'essaye de calculer le réseau
+  \item Comparer avec ce qu'il sort (fonction de perte).
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Réseaux de neurones --- Comment apprendre les poids ?}
+  \begin{enumerate}
+  \item Une fonction de perte est une \textbf{fonction}
+  \item On voit au lycée comment minimiser des fonctions (dérivées)
+  \item …
+  \item Profit
+  \end{enumerate}
+\end{frame}
+
+\section{Convolutionnal Neural Networks}
+\label{sec:convnets}
+\begin{frame}{CNNs --- Les réseaux normaux ne suffisent pas ?}
+  \vphrase{Pas pour les images. Chaque neurone reçoit chaque pixel.}
+  \vphrase{→ Trop d'informations !}
+  \vfill
+  \cimgg{tmi.jpg}
+  \vfill
+\end{frame}
+\begin{frame}{CNNs --- Trop d'infos 1/3}
+  \cimgg{park.jpg}
+\end{frame}
+\begin{frame}{CNNs --- Trop d'infos 2/3}
+  \cimgg{station.jpg}
+\end{frame}
+\begin{frame}{CNNs --- Trop d'infos 3/3}
+  \cimgg{street.jpg}
+\end{frame}
+\begin{frame}{CNNs --- Solution 1/3}
+  \vphrase{Restreindre les champs de réception des neurones}
+  \cimggg{kernel.jpg}
+\end{frame}
+\begin{frame}{CNNs --- Solution 2/3}
+  \vphrase{Pooling: propager seulement les infos importantes}
+  \cimg{pooling.png}
+\end{frame}
+\begin{frame}{CNNs --- Solution 3/3}
+  \vphrase{Combiner ces mécanismes hiérarchiquement}
+  \cimg{cnn.jpg}
+\end{frame}
+\begin{frame}{CNNs --- Exemples}
+  \cimg{hierarchical-features.png}
+\end{frame}
+
+
+\section{Outils}
+\label{sec:outils}
+\begin{frame}{Outils --- Python}
+  \cimgsm{python.png}
+  \begin{itemize}
+  \item Language de loin le plus utilisé en ML
+  \item Facile d'accès
+  \item Bonnes perfs car libs écrites en C
+  \end{itemize}
+\end{frame}
+\begin{frame}{Outils --- Jupyter}
+  \cimgsm{jupyter.png}
+  \begin{itemize}
+  \item Outil interactif pour programmer en python
+  \item Sympa pour prototyper
+  \item Très utilisé pour partager des expés
+  \end{itemize}
+\end{frame}
+\begin{frame}{Outils --- Tensorflow}
+  \cimgsm{tensorflow.png}
+  \begin{itemize}
+  \item Librairie de deep learning de Google
+  \item Bon compromis entre recherche et production
+  \item Un peu dur d'utilisation
+  \end{itemize}
+\end{frame}
+\begin{frame}{Outils --- PyTorch}
+  \cimgsm{pytorch.png}
+  \begin{itemize}
+  \item TensorFlow version Facebook
+  \item Très bien pour la recherche et le prototyping
+  \item Plein d'algos dispos sur github
+  \end{itemize}
+\end{frame}
+\begin{frame}{Outils --- Keras}
+  \cimgt{keras.jpg}
+  \begin{itemize}
+  \item Deep learning
+  \item Intégré à TensorFlow
+  \item Python
+  \item Rend TF plus facile
+  \end{itemize}
+\end{frame}
+\begin{frame}{Outils --- Scikit Learn}
+  \cimgsm{scikit.png}
+  \begin{itemize}
+  \item Machine learning \og traditionnel\fg{}
+  \item Énormément d'algos dispos
+  \item Python
+  \end{itemize}
+\end{frame}
+\begin{frame}{Outils --- Google Cloud}
+  \cimgsm{google-cloud.png}
+  \begin{itemize}
+  \item GPUs peu chers et sur mesure
+  \item 300€ de crédit offert
+  \end{itemize}
+\end{frame}
+
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
