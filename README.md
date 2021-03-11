@@ -12,9 +12,9 @@ Vous pouvez maintenant installer PyTorch en vous rendant sur le [site
 officiel](https://pytorch.org/) et en choisissant la combinaison qui correspond à votre
 environnement.
 
-Vous pouvez ensuite installer le reste des dépendances avec :
+Vous pouvez ensuite installer le reste des dépendances avec [Poetry](https://python-poetry.org/) :
 
-    pip install -r requirements.txt
+    poetry install
 
 ## Utilisation
 
